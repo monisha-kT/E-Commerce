@@ -36,7 +36,7 @@ const Account = ({setIsLoggedIn}) => {
           <>
             <p><strong>Name:</strong> {user.name}</p>
             <p><strong>Email:</strong> {user.email}</p>
-            <Link to="/SignIn" onClick={handleLogout}>Logout</Link>
+            <Link to="/" onClick={handleLogout}>Logout</Link>
           </>
         ):(
           <p>Loading user details...</p>
