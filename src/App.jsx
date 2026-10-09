@@ -9,6 +9,7 @@ import Wishlist from './components/Pages/Wishlist';
 import ProductDetails from './components/Pages/ProductDetails';
 import Basket from './components/Pages/Basket';
 import Checkout from './components/Pages/Checkout';
+import ShopMindAssistant from './components/ShopMindAssistant';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -30,15 +31,14 @@ function AppContent({ isLoggedIn, setIsLoggedIn, handleserach, searchQuery }) {
 
   useEffect(() => {
     const status = localStorage.getItem("Status");
-    if(window.location.pathname==="/"&&status==="loggedIn"){
-      navigate("/store")
+    if (window.location.pathname === "/" && status === "loggedIn") {
+      navigate("/store");
     }
     if (status !== "loggedIn") {
-     
       setIsLoggedIn(false);
       navigate("/");
     }
-  }, []);
+  }, [navigate, setIsLoggedIn]);
 
   return (
     <div>
@@ -53,11 +53,12 @@ function AppContent({ isLoggedIn, setIsLoggedIn, handleserach, searchQuery }) {
           <Routes>
             <Route path="/store" element={<ProductListing searchQuery={searchQuery} />} />
             <Route path="/Account" element={<Account />} />
-            <Route path="/Wishlist" element={<Wishlist   searchQuery={searchQuery} />} />
+            <Route path="/Wishlist" element={<Wishlist searchQuery={searchQuery} />} />
             <Route path="/Basket" element={<Basket />} />
             <Route path="/product/:productId" element={<ProductDetails />} />
             <Route path="/checkout" element={<Checkout />} />
           </Routes>
+          <ShopMindAssistant />
         </>
       )}
     </div>
